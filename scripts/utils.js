@@ -7,6 +7,10 @@ function validarTexto(texto) {
 
 function normalizarTexto(texto) {
 
+    const textoNormalizado = texto.toLowerCase().trim()
+
+    return textoNormalizado
+
 }
 
 /* ---------------------------------- email --------------------------------- */
@@ -21,7 +25,9 @@ function validarEmail(email) {
 }
 
 function normalizarEmail(email) {
+    const emailNormalizado = email.toLowerCase().trim()
 
+    return emailNormalizado
 }
 
 /* -------------------------------- password -------------------------------- */
