@@ -6,44 +6,33 @@ function validarTexto(texto) {
 }
 
 function normalizarTexto(texto) {
-
-    const textoNormalizado = texto.toLowerCase().trim()
-
-    return textoNormalizado
-
+    return texto.trim()
 }
 
 /* ---------------------------------- email --------------------------------- */
 function validarEmail(email) {
     const validEmailRegex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
+
     if (validEmailRegex.test(email)) {
         return email
-    } else {
-        console.log('El email ingresado es incorrecto')
     }
 }
 
 function normalizarEmail(email) {
-    const emailNormalizado = email.toLowerCase().trim()
-
-    return emailNormalizado
+    return email.trim().toLowerCase()
 }
 
 /* -------------------------------- password -------------------------------- */
 function validarContrasenia(contrasenia) {
     if (contrasenia.length > 4) {
         return contrasenia
-    } else {
-        console.log('La contrasenia no puede ser menor a 5 caracteres')
     }
 }
 
 function compararContrasenias(contrasenia_1, contrasenia_2) {
     if (contrasenia_1 == contrasenia_2) {
         return contrasenia_1
-    } else {
-        console.log('Las contrasenias no son iguales')
     }
 }
 

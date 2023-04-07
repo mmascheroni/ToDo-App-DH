@@ -7,6 +7,8 @@ window.addEventListener('load', function () {
     const password = document.querySelector('#inputPassword')
     const passwordRepetida = document.querySelector('#inputPasswordRepetida')
 
+    let divError = document.createElement('div')
+
     const BASE_URL = 'https://todo-api.ctd.academy/v1'
     const PATH_USERS = '/users'
 
@@ -17,6 +19,8 @@ window.addEventListener('load', function () {
     form.addEventListener('submit', function (event) {
         event.preventDefault()
 
+        divError.innerHTML = ''
+
         const settings = {
             firstName: '',
             lastName: '',
@@ -26,20 +30,47 @@ window.addEventListener('load', function () {
 
 
         if (validarTexto(nombre.value)) {
-            settings.firstName = nombre.value
+            settings.firstName = normalizarTexto(nombre.value)
+        } else {
+            divError.innerHTML += `
+                <p class="error">⚠️ El nombre ingresado no es valido</p>
+            `
+            form.appendChild(divError)
         }
 
         if (validarTexto(apellido.value)) {
-            settings.lastName = apellido.value
+            settings.lastName = normalizarTexto(apellido.value)
+        } else {
+            divError.innerHTML += `
+                <p class="error">⚠️ El apellido ingresado no es valido</p>
+            `
+            form.appendChild(divError)
         }
 
         if (validarEmail(email.value)) {
-            settings.email = email.value
+            settings.email = normalizarEmail(email.value)
+        } else {
+            divError.innerHTML += `
+                <p class="error">⚠️ El email ingresado no es valido</p>
+            `
+            form.appendChild(divError)
         }
 
-        if (validarContrasenia(password.value) && compararContrasenias(password.value, passwordRepetida.value)) {
-            settings.password = password.value;
+        if (validarContrasenia(password.value)) {
+            if (compararContrasenias(password.value, passwordRepetida.value)) {
+                settings.password = password.value
+            } else {
+                divError.innerHTML += `
+                <p class="error">⚠️ Las contrasenias no son iguales </p>
+            `
+                form.appendChild(divError)
+            }
+        } else {
+            divError.innerHTML += `
+                <p class="error">⚠️ La contrasenia debe tener mas de 4 caracteres</p>
+            `
         }
+
 
         if (settings.firstName.length > 1 && settings.lastName.length > 1 && settings.email.length > 1 && settings.password.length > 1) {
             realizarRegister(settings)

@@ -4,6 +4,8 @@ window.addEventListener('load', function () {
     const email = document.querySelector('#inputEmail')
     const password = document.querySelector('#inputPassword')
 
+    const divError = document.createElement('div')
+
     const BASE_URL = 'https://todo-api.ctd.academy/v1'
     const PATH_LOGIN = '/users/login'
 
@@ -18,9 +20,12 @@ window.addEventListener('load', function () {
             password: ''
         }
 
+
         if (validarEmail(email.value)) {
             settings.email = email.value
         }
+
+
 
         if (validarContrasenia(password.value)) {
             settings.password = password.value;
@@ -28,9 +33,15 @@ window.addEventListener('load', function () {
 
 
 
-        if (password.value.length > 1 && email.value.length > 1) {
+        if (validarEmail(email.value) && validarContrasenia(password.value)) {
             console.log(settings)
             realizarLogin(settings)
+        } else {
+            divError.innerHTML = `
+                        <p class="error">⚠️ La contrasenia o el email no son validos</p>
+                    `
+
+            form.appendChild(divError)
         }
 
     });
@@ -54,9 +65,17 @@ window.addEventListener('load', function () {
                     location.replace('../mis-tareas.html')
                 } else {
                     console.log('error')
+                    divError.innerHTML = `
+                        <p class="error">⚠️ La contrasenia o el email no son validos</p>
+                    `
+
+                    form.appendChild(divError)
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+
+            })
     };
 
 
