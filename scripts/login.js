@@ -65,7 +65,7 @@ window.addEventListener('load', function () {
             .then(responseData => {
                 if (responseData.jwt) {
                     localStorage.setItem("jwt", responseData.jwt)
-                    location.replace('../mis-tareas.html')
+                    location.replace('mis-tareas.html')
                 } else {
                     console.log('error')
                     divError.innerHTML = `

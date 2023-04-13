@@ -7,6 +7,7 @@ if (!localStorage.jwt) {
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
+  AOS.init();
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const btnCerrarSesion = document.querySelector('#closeApp')
   const formCrearTarea = document.querySelector('.nueva-tarea')
@@ -46,7 +47,7 @@ window.addEventListener('load', function () {
           'success'
         )
         localStorage.clear()
-        location.replace("./index.html")
+        location.replace("index.html")
       }
     })
     // localStorage.clear()
