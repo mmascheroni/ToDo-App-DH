@@ -7,7 +7,6 @@ if (!localStorage.jwt) {
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
-
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const btnCerrarSesion = document.querySelector('#closeApp')
   const formCrearTarea = document.querySelector('.nueva-tarea')
@@ -30,8 +29,28 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
 
   btnCerrarSesion.addEventListener('click', function () {
-    localStorage.clear()
-    location.replace('../index.html')
+    Swal.fire({
+      title: '¿Deseas cerrar sesión?',
+      // text: "You won't be able to revert this!",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          '¡Hasta luego!',
+          'Te esperamos.',
+          'success'
+        )
+        localStorage.clear()
+        location.replace("./index.html")
+      }
+    })
+    // localStorage.clear()
+    // location.replace('../index.html')
   });
 
   /* -------------------------------------------------------------------------- */

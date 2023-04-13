@@ -104,3 +104,9 @@ form button:hover{
 .ingresarA a:hover{
     color: var(--azul);
 }
+
+#loader {
+    display: inline-block;
+    margin-left: 5px;
+    /* Agrega otros estilos para personalizar la apariencia del loader */
+}

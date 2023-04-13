@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
+
     const form = document.querySelector('form')
     const email = document.querySelector('#inputEmail')
     const password = document.querySelector('#inputPassword')
@@ -35,12 +36,14 @@ window.addEventListener('load', function () {
 
         if (validarEmail(email.value) && validarContrasenia(password.value)) {
             console.log(settings)
+            // Activar el loader
+            document.querySelector('.btn-login').innerHTML = 'Cargando...';
+
             realizarLogin(settings)
         } else {
             divError.innerHTML = `
                         <p class="error">⚠️ La contrasenia o el email no son validos</p>
                     `
-
             form.appendChild(divError)
         }
 
